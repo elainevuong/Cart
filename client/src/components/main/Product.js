@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteProduct } from "../../features/products/products";
+import { deleteProduct, addToCart } from "../../features/products/products";
 import EditForm from "./EditForm";
 
-const Product = ({ product, onAddToCart }) => {
+const Product = ({ product }) => {
   const dispatch = useDispatch();
 
   const [ editFormVisible, setEditFormVisible ] = useState(false)
@@ -16,7 +16,7 @@ const Product = ({ product, onAddToCart }) => {
 
   const handleAddToCart = event => {
     event.preventDefault();
-    onAddToCart(product._id)
+    dispatch(addToCart(product._id))
   }
 
   if (editFormVisible) {

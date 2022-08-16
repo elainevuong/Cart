@@ -14,9 +14,11 @@ export const addProduct = createAsyncThunk(
   async (args) => {
     const { callback, product } = args
     const newProduct = await apiClient.addProduct(product);
+
     if (callback) {
       callback()
     }
+
     return newProduct;
   }
 )
@@ -43,6 +45,14 @@ export const editProduct = createAsyncThunk(
   }
 )
 
+export const addToCart = createAsyncThunk(
+  'products/addToCart',
+  async (productId) => {
+    const data = await apiClient.addToCart(productId)
+    return data
+  }
+)
+
 const initialState = [];
 
 const productsSlice = createSlice({
@@ -53,16 +63,24 @@ const productsSlice = createSlice({
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       return action.payload
     })
+
     builder.addCase(addProduct.fulfilled, (state, action) => {
       const newProduct = action.payload
       return state.concat(newProduct)
     })
+
     builder.addCase(deleteProduct.fulfilled, (state, action) => {
       const productId = action.payload
       return state.filter(product => product._id !== productId)
     })
+
     builder.addCase(editProduct.fulfilled, (state, action) => {
       const updatedProduct = action.payload
+      return state.map(product => product._id === updatedProduct._id ? updatedProduct : product)
+    })
+    
+    builder.addCase(addToCart.fulfilled, (state, action) => {
+      const updatedProduct = action.payload.product
       return state.map(product => product._id === updatedProduct._id ? updatedProduct : product)
     })
   }

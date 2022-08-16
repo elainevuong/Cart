@@ -2,16 +2,6 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editProduct } from "../../features/products/products";
 
-// const handleEditProduct = async (updateProduct, productId, callback) => {
-//   const response = await axios.put(`/api/products/${productId}`, updateProduct)
-//   const updatedProduct = response.data
-//   // setProducts(products.map(product => productId === product._id ? updatedProduct : product))
-
-//   if (callback) {
-//     callback()
-//   }
-// }
-
 const EditForm = ({ setEditFormVisible, product }) => {
   const dispatch = useDispatch();
 
