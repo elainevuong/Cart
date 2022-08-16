@@ -2,26 +2,26 @@ import axios from "axios";
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
 import EditForm from "./EditForm";
-import { deleteProduct } from "../../actions/productActions";
+import { deleteProduct, addToCart } from "../../actions/productActions";
 
-const Product = ({ product, onEditProduct, onAddToCart }) => {
+const Product = ({ product }) => {
   const dispatch = useDispatch()
 
   const [ editFormVisible, setEditFormVisible ] = useState(false)
   
-  const handleDeleteProduct = async (event) => {
-    event.preventDefault();
-    
+  const handleDeleteProduct = async () => {    
     if (window.confirm(`Are you sure you want to delete ${product.title}?`)) {
       await axios.delete(`/api/products/${product._id}`)
       dispatch(deleteProduct(product._id))
     }
   }  
 
-  const handleAddToCart = event => {
-    event.preventDefault();
+  const handleAddToCart = async (event) => {
+    event.preventDefault()
 
-    onAddToCart(product._id)
+    const response = await axios.post('/api/add-to-cart', { productId: product._id })
+    const data = response.data;
+    dispatch(addToCart(data))
   }
 
   if (editFormVisible) {
@@ -33,7 +33,7 @@ const Product = ({ product, onEditProduct, onAddToCart }) => {
           <p className="quantity">{product.quantity} left in stock</p>
           <div className="actions product-actions">
             <button 
-              className="button add-to-cart"
+              className={`button add-to-cart ${product.quantity <= 0 ? 'disabled' : ''}`}
               onClick={(e) => handleAddToCart(e)}
             >
               Add to Cart
@@ -42,12 +42,11 @@ const Product = ({ product, onEditProduct, onAddToCart }) => {
           </div>
           <a 
           className="delete-button"
-          onClick={(e) => handleDeleteProduct(e)}><span>X</span></a>
+          onClick={() => handleDeleteProduct()}><span>X</span></a>
         </div>
         <EditForm 
           setEditFormVisible={setEditFormVisible}
           product={product}
-          onEditProduct={onEditProduct}
         />
       </div>
     )
@@ -61,7 +60,7 @@ const Product = ({ product, onEditProduct, onAddToCart }) => {
         <p className="quantity">{product.quantity} left in stock</p>
         <div className="actions product-actions">
           <button 
-            className="button add-to-cart"
+            className={`button add-to-cart ${product.quantity <= 0 ? 'disabled' : ''}`}
             onClick={(e) => handleAddToCart(e)}
           >
             Add to Cart
@@ -73,7 +72,7 @@ const Product = ({ product, onEditProduct, onAddToCart }) => {
         </div>
         <a 
           className="delete-button"
-          onClick={(e) => handleDeleteProduct(e)}><span>X</span></a>
+          onClick={() => handleDeleteProduct()}><span>X</span></a>
       </div>
     </div>
   )

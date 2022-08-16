@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { cartReceived, checkoutCart } from "../../actions/cartActions"
 
-const HeaderCartSummary = ({ onHandleCheckout }) => {
+const HeaderCartSummary = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector(state => state.cart)

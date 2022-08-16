@@ -4,7 +4,7 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { productsReceived } from "../../actions/productActions"
 
-const ProductListing = ({ onAddToCart }) => {
+const ProductListing = () => {
   const dispatch = useDispatch();
 
   const products = useSelector(state => state.products)
@@ -26,7 +26,6 @@ const ProductListing = ({ onAddToCart }) => {
         return <Product 
           key={product.title}
           product={product} 
-          onAddToCart={onAddToCart}
         />
       })}
     </div>

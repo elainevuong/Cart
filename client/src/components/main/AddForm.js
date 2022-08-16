@@ -4,13 +4,13 @@ import { useDispatch } from 'react-redux';
 import { addProduct } from '../../actions/productActions';
 
 const AddForm = () => {
+  const dispatch = useDispatch()
+
   const [ addFormVisible, setAddFormVisible ] = useState(false)
   
   const [ title, setTitle ] = useState('');
   const [ price, setPrice ] = useState('');
   const [ quantity, setQuantity ] = useState('');
-
-  const dispatch = useDispatch()
 
   const handleAddProduct = async (event) => {
     event.preventDefault();

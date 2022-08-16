@@ -6,7 +6,6 @@ export const cartReceived = cart => {
 };
 
 export const checkoutCart = () => {
-  console.log('within checkout cart action')
   return {
     type: "CHECKOUT"
   }

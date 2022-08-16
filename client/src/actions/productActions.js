@@ -25,3 +25,10 @@ export const editProduct = editedProduct => {
     payload: editedProduct
   }
 }
+
+export const addToCart = data => {
+  return {
+    type: "ADD_TO_CART",
+    payload: data
+  };
+};
