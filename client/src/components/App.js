@@ -6,17 +6,17 @@ import ProductListing from "./main/ProductListing";
 import AddForm from "./main/AddForm";
 
 const App = () => {
-  const [ cart, setCart ] = useState([])
+  // const [ cart, setCart ] = useState([])
 
-  useEffect(() => {
-    const fetchCart = async () => {
-      const response = await axios.get('/api/cart');
-      const data = response.data;
-      setCart(data)
-    }
+  // useEffect(() => {
+  //   const fetchCart = async () => {
+  //     const response = await axios.get('/api/cart');
+  //     const data = response.data;
+  //     setCart(data)
+  //   }
 
-    fetchCart();
-  }, [])
+  //   fetchCart();
+  // }, [])
 
   const handleAddToCart = async (productId, callback) => {
     const response = await axios.post('/api/add-to-cart', { productId })
@@ -25,16 +25,16 @@ const App = () => {
     const updatedItem = data.item
 
     let replaced = false;
-    setCart(cart.map(item => {
-      if (item._id === updatedItem._id) {
-        replaced = true;
-        return updatedItem
-      }
-      return item
-    }))
+    // setCart(cart.map(item => {
+    //   if (item._id === updatedItem._id) {
+    //     replaced = true;
+    //     return updatedItem
+    //   }
+    //   return item
+    // }))
 
     if (!replaced) {
-      setCart([...cart, updatedItem])
+      // setCart([...cart, updatedItem])
     }
 
     // setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product))
@@ -46,7 +46,7 @@ const App = () => {
 
   const handleCheckout = async (callback) => {
     await axios.post('/api/checkout')
-    setCart([])
+    // setCart([])
 
     if (callback) {
       callback()
@@ -56,7 +56,6 @@ const App = () => {
   return (
     <div id="app">
       <Header 
-        cart={cart}
         onHandleCheckout={handleCheckout}
       />
       <main>

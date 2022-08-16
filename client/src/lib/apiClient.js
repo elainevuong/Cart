@@ -12,7 +12,7 @@ const addProduct = async (product) => {
 
 const deleteProduct = async (productId) => {
   await axios.delete(`/api/products/${productId}`)
-  return productId
+  return
 }
 
 const editProduct = async (productId, updateProduct) => {
@@ -20,5 +20,10 @@ const editProduct = async (productId, updateProduct) => {
   return response.data
 }
 
-const apiClient = { fetchProducts, addProduct, deleteProduct, editProduct }
+const fetchCart = async () => {
+  const response = await axios.get('/api/cart')
+  return response.data;
+}
+
+const apiClient = { fetchProducts, addProduct, deleteProduct, editProduct, fetchCart }
 export default apiClient
