@@ -1,5 +1,5 @@
-import Product from "./Product"
 import axios from "axios"
+import Product from "./Product"
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { productsReceived } from "../../actions/productActions"
