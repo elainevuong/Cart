@@ -5,5 +5,10 @@ const fetchProducts = async () => {
   return response.data
 }
 
-const apiClient = { fetchProducts }
+const addProduct = async (product) => {
+  const response = await axios.post('/api/products', product);
+  return response.data
+}
+
+const apiClient = { fetchProducts, addProduct }
 export default apiClient

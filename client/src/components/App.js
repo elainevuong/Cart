@@ -6,18 +6,7 @@ import ProductListing from "./main/ProductListing";
 import AddForm from "./main/AddForm";
 
 const App = () => {
-  // const [ products, setProducts ] = useState([])
   const [ cart, setCart ] = useState([])
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     const response = await axios.get('/api/products');
-  //     const data = response.data;
-  //     setProducts(data)
-  //   }
-
-  //   fetchProducts();
-  // }, [])
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -28,14 +17,6 @@ const App = () => {
 
     fetchCart();
   }, [])
-
-  const handleAddProduct = async (newProduct, callback) => {
-    const response = await axios.post('/api/products', newProduct);
-    // setProducts(products.concat(response.data));
-    if (callback) {
-      callback()
-    }
-  }
 
   const handleDeleteProduct = async (productId, callback) => {
     await axios.delete(`/api/products/${productId}`)
@@ -103,9 +84,7 @@ const App = () => {
           onEditProduct={handleEditProduct}
           onAddToCart={handleAddToCart}
         />
-        <AddForm 
-          onAddProduct={handleAddProduct}
-        />
+        <AddForm />
       </main>
     </div>
   );

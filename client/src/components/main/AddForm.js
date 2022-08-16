@@ -1,6 +1,10 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../features/products/products';
 
-const AddForm = ({ onAddProduct }) => {
+const AddForm = () => {
+  const dispatch = useDispatch()
+
   const [ addFormVisible, setAddFormVisible ] = useState(false)
   
   const [ title, setTitle ] = useState('');
@@ -16,7 +20,12 @@ const AddForm = ({ onAddProduct }) => {
       price,
     }
 
-    onAddProduct(newProduct, clearFormInputs)
+    dispatch(addProduct(
+      {
+        product: newProduct,
+        callback: clearFormInputs
+      }
+    ))
   }
 
   const clearFormInputs = () => {
