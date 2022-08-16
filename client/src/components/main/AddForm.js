@@ -11,6 +11,10 @@ const AddForm = () => {
   const [ price, setPrice ] = useState('');
   const [ quantity, setQuantity ] = useState('');
 
+  const handleCancelAddForm = event => {
+    event.preventDefault();
+    setAddFormVisible(false);
+  }
 
   const handleAddProduct = event => {
     event.preventDefault();
@@ -86,7 +90,7 @@ const AddForm = () => {
           </button>
           <button
             className="button"
-            onClick={() => setAddFormVisible(false)}
+            onClick={(e) => handleCancelAddForm(e)}
           >
             Cancel
           </button>

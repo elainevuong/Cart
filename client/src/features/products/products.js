@@ -29,6 +29,20 @@ export const deleteProduct = createAsyncThunk(
   }
 )
 
+export const editProduct = createAsyncThunk(
+  'products/editProduct',
+  async (args) => {
+    const { productId, updateProduct, callback } = args;
+    const updatedProduct = await apiClient.editProduct(productId, updateProduct)
+
+    if (callback) {
+      callback();
+    }
+
+    return updatedProduct
+  }
+)
+
 const initialState = [];
 
 const productsSlice = createSlice({
@@ -46,6 +60,10 @@ const productsSlice = createSlice({
     builder.addCase(deleteProduct.fulfilled, (state, action) => {
       const productId = action.payload
       return state.filter(product => product._id !== productId)
+    })
+    builder.addCase(editProduct.fulfilled, (state, action) => {
+      const updatedProduct = action.payload
+      return state.map(product => product._id === updatedProduct._id ? updatedProduct : product)
     })
   }
 })

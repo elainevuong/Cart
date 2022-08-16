@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { deleteProduct } from "../../features/products/products";
 import EditForm from "./EditForm";
 
-const Product = ({ product, onEditProduct, onAddToCart }) => {
+const Product = ({ product, onAddToCart }) => {
   const dispatch = useDispatch();
 
   const [ editFormVisible, setEditFormVisible ] = useState(false)
@@ -42,7 +42,6 @@ const Product = ({ product, onEditProduct, onAddToCart }) => {
         <EditForm 
           setEditFormVisible={setEditFormVisible}
           product={product}
-          onEditProduct={onEditProduct}
         />
       </div>
     )

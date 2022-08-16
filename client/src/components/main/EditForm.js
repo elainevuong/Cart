@@ -1,6 +1,20 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { editProduct } from "../../features/products/products";
 
-const EditForm = ({ setEditFormVisible, product, onEditProduct }) => {
+// const handleEditProduct = async (updateProduct, productId, callback) => {
+//   const response = await axios.put(`/api/products/${productId}`, updateProduct)
+//   const updatedProduct = response.data
+//   // setProducts(products.map(product => productId === product._id ? updatedProduct : product))
+
+//   if (callback) {
+//     callback()
+//   }
+// }
+
+const EditForm = ({ setEditFormVisible, product }) => {
+  const dispatch = useDispatch();
+
   const [ title, setTitle ] = useState(product.title);
   const [ price, setPrice ] = useState(product.price);
   const [ quantity, setQuantity ] = useState(product.quantity);
@@ -8,17 +22,26 @@ const EditForm = ({ setEditFormVisible, product, onEditProduct }) => {
   const handleEditProduct = event => {
     event.preventDefault();
 
-    const updatedProduct = {
+    const updateProduct = {
       title,
       price,
       quantity,
     }
 
-    const productId = product._id
-    onEditProduct(updatedProduct, productId, clearInputs)
+    dispatch(editProduct({
+      productId: product._id,
+      updateProduct: updateProduct,
+      callback: clearInputs
+    }))
+    // onEditProduct(updatedProduct, productId, clearInputs)
   }
 
   const clearInputs = () => {
+    setEditFormVisible(false);
+  }
+
+  const handleCancelEditForm = event => {
+    event.preventDefault();
     setEditFormVisible(false);
   }
 
@@ -60,7 +83,7 @@ const EditForm = ({ setEditFormVisible, product, onEditProduct }) => {
           <button className="button" onClick={(e) => handleEditProduct(e)}>
             Update
           </button>
-          <button className="button" onClick={() => setEditFormVisible(false)}>
+          <button className="button" onClick={(e) => handleCancelEditForm(e)}>
             Cancel
           </button>
         </div>
