@@ -1,6 +1,6 @@
 import Product from "./Product"
 
-const ProductListing = ({ products, onDeleteProduct, onEditProduct }) => {
+const ProductListing = ({ products, onDeleteProduct, onEditProduct, onAddToCart }) => {
   return (
     <div className="product-listing">
       <h2>Products</h2>
@@ -10,6 +10,7 @@ const ProductListing = ({ products, onDeleteProduct, onEditProduct }) => {
           product={product} 
           onDeleteProduct={onDeleteProduct}
           onEditProduct={onEditProduct}
+          onAddToCart={onAddToCart}
         />
       })}
     </div>

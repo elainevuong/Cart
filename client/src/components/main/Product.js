@@ -1,7 +1,7 @@
 import { useState } from "react";
 import EditForm from "./EditForm";
 
-const Product = ({ product, onDeleteProduct, onEditProduct }) => {
+const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
   const [ editFormVisible, setEditFormVisible ] = useState(false)
 
   const handleDeleteProduct = event => {
@@ -12,6 +12,12 @@ const Product = ({ product, onDeleteProduct, onEditProduct }) => {
     }
   }  
 
+  const handleAddToCart = event => {
+    event.preventDefault();
+
+    onAddToCart(product._id)
+  }
+
   if (editFormVisible) {
     return (
       <div className="product">
@@ -20,7 +26,10 @@ const Product = ({ product, onDeleteProduct, onEditProduct }) => {
           <p className="price">${product.price}</p>
           <p className="quantity">{product.quantity} left in stock</p>
           <div className="actions product-actions">
-            <button className="button add-to-cart">
+            <button 
+              className="button add-to-cart"
+              onClick={(e) => handleAddToCart(e)}
+            >
               Add to Cart
             </button>
             <button className="button edit">Edit</button>
@@ -47,7 +56,10 @@ const Product = ({ product, onDeleteProduct, onEditProduct }) => {
         <p className="price">${product.price}</p>
         <p className="quantity">{product.quantity} left in stock</p>
         <div className="actions product-actions">
-          <button className="button add-to-cart">
+          <button 
+            className="button add-to-cart"
+            onClick={(e) => handleAddToCart(e)}
+          >
             Add to Cart
           </button>
           <button 

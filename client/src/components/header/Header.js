@@ -1,10 +1,13 @@
 import HeaderCartSummary from "./HeaderCartSummary"
 
-const Header = () => {
+const Header = ({ cart, onHandleCheckout }) => {
   return (
     <header>
       <h1>The Shop!</h1>
-      <HeaderCartSummary />
+      <HeaderCartSummary 
+        cart={cart}
+        onHandleCheckout={onHandleCheckout}
+      />
     </header>
   )
 }
