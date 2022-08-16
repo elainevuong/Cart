@@ -18,17 +18,8 @@ const App = () => {
     fetchCart();
   }, [])
 
-  const handleDeleteProduct = async (productId, callback) => {
-    await axios.delete(`/api/products/${productId}`)
-    // setProducts(products.filter(product => product._id !== productId))
-
-    // if (callback) {
-    //   callback()
-    // }
-  }
-
   const handleEditProduct = async (updateProduct, productId, callback) => {
-    const response = await axios.put(`/api/products/${productId}`, updateProduct)
+    await axios.put(`/api/products/${productId}`, updateProduct)
     // const updatedProduct = response.data
     // setProducts(products.map(product => productId === product._id ? updatedProduct : product))
 
@@ -80,7 +71,6 @@ const App = () => {
       />
       <main>
         <ProductListing 
-          onDeleteProduct={handleDeleteProduct}
           onEditProduct={handleEditProduct}
           onAddToCart={handleAddToCart}
         />

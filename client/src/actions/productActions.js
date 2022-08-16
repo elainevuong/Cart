@@ -11,3 +11,11 @@ export const addProduct = product => {
     payload: product
   };
 };
+
+export const deleteProduct = productId => {
+  console.log('within the delete product action')
+  return {
+    type: "DELETE_PRODUCT",
+    payload: productId
+  };
+};

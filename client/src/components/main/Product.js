@@ -1,14 +1,20 @@
+import axios from "axios";
 import { useState } from "react";
+import { useDispatch } from 'react-redux';
 import EditForm from "./EditForm";
+import { deleteProduct } from "../../actions/productActions";
 
-const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
+const Product = ({ product, onEditProduct, onAddToCart }) => {
+  const dispatch = useDispatch()
+
   const [ editFormVisible, setEditFormVisible ] = useState(false)
-
-  const handleDeleteProduct = event => {
+  
+  const handleDeleteProduct = async (event) => {
     event.preventDefault();
     
     if (window.confirm(`Are you sure you want to delete ${product.title}?`)) {
-      onDeleteProduct(product._id)
+      await axios.delete(`/api/products/${product._id}`)
+      dispatch(deleteProduct(product._id))
     }
   }  
 
@@ -34,11 +40,9 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
             </button>
             <button className="button edit">Edit</button>
           </div>
-          <button
-            className="delete-button"
-            onClick={(e) => handleDeleteProduct(e)}  
-          ><span>X</span>
-          </button>
+          <a 
+          className="delete-button"
+          onClick={(e) => handleDeleteProduct(e)}><span>X</span></a>
         </div>
         <EditForm 
           setEditFormVisible={setEditFormVisible}

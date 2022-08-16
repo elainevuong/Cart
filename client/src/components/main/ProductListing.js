@@ -26,7 +26,6 @@ const ProductListing = ({ onDeleteProduct, onEditProduct, onAddToCart }) => {
         return <Product 
           key={product.title}
           product={product} 
-          onDeleteProduct={onDeleteProduct}
           onEditProduct={onEditProduct}
           onAddToCart={onAddToCart}
         />
