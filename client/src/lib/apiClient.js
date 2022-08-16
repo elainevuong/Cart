@@ -25,5 +25,10 @@ const fetchCart = async () => {
   return response.data;
 }
 
-const apiClient = { fetchProducts, addProduct, deleteProduct, editProduct, fetchCart }
+const checkout = async () => {
+  await axios.post('/api/checkout')
+  return
+}
+
+const apiClient = { fetchProducts, addProduct, deleteProduct, editProduct, fetchCart, checkout }
 export default apiClient

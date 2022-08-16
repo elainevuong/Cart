@@ -1,9 +1,9 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchCart } from "../../features/cart/cart"
+import { fetchCart, checkout } from "../../features/cart/cart"
 import CartItems from "./CartItems"
 
-const HeaderCartSummary = ({ onHandleCheckout }) => {
+const HeaderCartSummary = () => {
   const dispatch = useDispatch();
 
   const cart = useSelector(state => state.cart)
@@ -13,7 +13,7 @@ const HeaderCartSummary = ({ onHandleCheckout }) => {
 
   const handleCheckout = () => {
     if (window.confirm(`Are you sure you want to checkout?`)) {
-      onHandleCheckout()
+      dispatch(checkout())
     }
   }
 

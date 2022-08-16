@@ -9,6 +9,14 @@ export const fetchCart = createAsyncThunk(
   }
 )
 
+export const checkout = createAsyncThunk(
+  'cart/checkout',
+  async() => {
+    await apiClient.checkout();
+    return
+  }
+)
+
 const initialState = [];
 
 const cartSlice = createSlice({
@@ -18,6 +26,9 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchCart.fulfilled, (state, action) => {
       return action.payload
+    })
+    builder.addCase(checkout.fulfilled, (state, action) => {
+      return []
     })
   }
 })
