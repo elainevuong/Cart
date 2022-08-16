@@ -31,11 +31,9 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
             </button>
             <button className="button edit">Edit</button>
           </div>
-          <button
-            className="delete-button"
-            onClick={() => handleDeleteProduct()}  
-          ><span>X</span>
-          </button>
+          <a 
+          className="delete-button"
+          onClick={() => handleDeleteProduct()}><span>X</span></a>
         </div>
         <EditForm 
           setEditFormVisible={setEditFormVisible}
