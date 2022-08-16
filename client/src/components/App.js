@@ -18,14 +18,6 @@ const App = () => {
     fetchCart();
   }, [])
 
-  const handleAddProduct = async (newProduct, callback) => {
-    const response = await axios.post('/api/products', newProduct);
-    // setProducts(products.concat(response.data));
-    // if (callback) {
-    //   callback()
-    // }
-  }
-
   const handleDeleteProduct = async (productId, callback) => {
     await axios.delete(`/api/products/${productId}`)
     // setProducts(products.filter(product => product._id !== productId))
@@ -88,14 +80,11 @@ const App = () => {
       />
       <main>
         <ProductListing 
-          // products={products}
           onDeleteProduct={handleDeleteProduct}
           onEditProduct={handleEditProduct}
           onAddToCart={handleAddToCart}
         />
-        <AddForm 
-          onAddProduct={handleAddProduct}
-        />
+        <AddForm />
       </main>
     </div>
   );
