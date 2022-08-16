@@ -2,9 +2,10 @@ import CartItems from "./CartItems"
 
 const HeaderCartSummary = ({ cart, onHandleCheckout }) => {
   const handleCheckout = () => {
-    onHandleCheckout()
+    if (window.confirm(`Are you sure you want to checkout?`)) {
+      onHandleCheckout()
+    }
   }
-
 
   if (cart.length === 0) {
     return (

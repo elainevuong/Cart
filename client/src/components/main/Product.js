@@ -4,9 +4,7 @@ import EditForm from "./EditForm";
 const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
   const [ editFormVisible, setEditFormVisible ] = useState(false)
 
-  const handleDeleteProduct = event => {
-    event.preventDefault();
-    
+  const handleDeleteProduct = () => {
     if (window.confirm(`Are you sure you want to delete ${product.title}?`)) {
       onDeleteProduct(product._id)
     }
@@ -14,7 +12,6 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
 
   const handleAddToCart = event => {
     event.preventDefault();
-
     onAddToCart(product._id)
   }
 
@@ -27,7 +24,7 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
           <p className="quantity">{product.quantity} left in stock</p>
           <div className="actions product-actions">
             <button 
-              className="button add-to-cart"
+              className={`button add-to-cart ${product.quantity <= 0 ? 'disabled' : ''}`}
               onClick={(e) => handleAddToCart(e)}
             >
               Add to Cart
@@ -36,7 +33,7 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
           </div>
           <button
             className="delete-button"
-            onClick={(e) => handleDeleteProduct(e)}  
+            onClick={() => handleDeleteProduct()}  
           ><span>X</span>
           </button>
         </div>
@@ -57,7 +54,7 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
         <p className="quantity">{product.quantity} left in stock</p>
         <div className="actions product-actions">
           <button 
-            className="button add-to-cart"
+            className={`button add-to-cart ${product.quantity <= 0 ? 'disabled' : ''}`}
             onClick={(e) => handleAddToCart(e)}
           >
             Add to Cart
@@ -69,7 +66,7 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
         </div>
         <a 
           className="delete-button"
-          onClick={(e) => handleDeleteProduct(e)}><span>X</span></a>
+          onClick={() => handleDeleteProduct()}><span>X</span></a>
       </div>
     </div>
   )
