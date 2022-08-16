@@ -4,7 +4,7 @@ import { fetchProducts } from "../../features/products/products"
 
 import Product from "./Product"
 
-const ProductListing = ({ onDeleteProduct, onEditProduct, onAddToCart }) => {
+const ProductListing = ({ onEditProduct, onAddToCart }) => {
   const dispatch = useDispatch();
 
   const products = useSelector(state => state.products)
@@ -20,7 +20,6 @@ const ProductListing = ({ onDeleteProduct, onEditProduct, onAddToCart }) => {
         return <Product 
           key={product.title}
           product={product} 
-          onDeleteProduct={onDeleteProduct}
           onEditProduct={onEditProduct}
           onAddToCart={onAddToCart}
         />

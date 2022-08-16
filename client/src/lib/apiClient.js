@@ -10,5 +10,10 @@ const addProduct = async (product) => {
   return response.data
 }
 
-const apiClient = { fetchProducts, addProduct }
+const deleteProduct = async (productId) => {
+  await axios.delete(`/api/products/${productId}`)
+  return productId
+}
+
+const apiClient = { fetchProducts, addProduct, deleteProduct }
 export default apiClient

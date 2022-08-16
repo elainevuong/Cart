@@ -21,6 +21,14 @@ export const addProduct = createAsyncThunk(
   }
 )
 
+export const deleteProduct = createAsyncThunk( 
+  'products/deleteProduct',
+  async (productId) => {
+    await apiClient.deleteProduct(productId)
+    return productId
+  }
+)
+
 const initialState = [];
 
 const productsSlice = createSlice({
@@ -34,6 +42,10 @@ const productsSlice = createSlice({
     builder.addCase(addProduct.fulfilled, (state, action) => {
       const newProduct = action.payload
       return state.concat(newProduct)
+    })
+    builder.addCase(deleteProduct.fulfilled, (state, action) => {
+      const productId = action.payload
+      return state.filter(product => product._id !== productId)
     })
   }
 })

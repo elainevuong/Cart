@@ -1,12 +1,16 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteProduct } from "../../features/products/products";
 import EditForm from "./EditForm";
 
-const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
+const Product = ({ product, onEditProduct, onAddToCart }) => {
+  const dispatch = useDispatch();
+
   const [ editFormVisible, setEditFormVisible ] = useState(false)
 
   const handleDeleteProduct = () => {
     if (window.confirm(`Are you sure you want to delete ${product.title}?`)) {
-      onDeleteProduct(product._id)
+      dispatch(deleteProduct(product._id))
     }
   }  
 
