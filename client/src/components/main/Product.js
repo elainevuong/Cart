@@ -1,4 +1,9 @@
-const Product = ({ product, onDeleteProduct }) => {
+import { useState } from "react";
+import EditForm from "./EditForm";
+
+const Product = ({ product, onDeleteProduct, onEditProduct }) => {
+  const [ editFormVisible, setEditFormVisible ] = useState(false)
+
   const handleDeleteProduct = event => {
     event.preventDefault();
     
@@ -7,21 +12,52 @@ const Product = ({ product, onDeleteProduct }) => {
     }
   }  
 
+  if (editFormVisible) {
+    return (
+      <div className="product">
+        <div className="product-details">
+          <h3>{product.title}</h3>
+          <p className="price">${product.price}</p>
+          <p className="quantity">{product.quantity} left in stock</p>
+          <div className="actions product-actions">
+            <button className="button add-to-cart">
+              Add to Cart
+            </button>
+            <button className="button edit">Edit</button>
+          </div>
+          <button
+            className="delete-button"
+            onClick={(e) => handleDeleteProduct(e)}  
+          ><span>X</span>
+          </button>
+        </div>
+        <EditForm 
+          setEditFormVisible={setEditFormVisible}
+          product={product}
+          onEditProduct={onEditProduct}
+        />
+      </div>
+    )
+  }
 
   return (
-    <div class="product">
-      <div class="product-details">
+    <div className="product">
+      <div className="product-details">
         <h3>{product.title}</h3>
-        <p class="price">${product.price}</p>
-        <p class="quantity">{product.quantity} left in stock</p>
-        <div class="actions product-actions">
-          <a class="button add-to-cart">Add to Cart</a>
-          <a class="button edit">Edit</a>
+        <p className="price">${product.price}</p>
+        <p className="quantity">{product.quantity} left in stock</p>
+        <div className="actions product-actions">
+          <button className="button add-to-cart">
+            Add to Cart
+          </button>
+          <button 
+            className="button edit"
+            onClick={() => setEditFormVisible(true)}
+          >Edit</button>
         </div>
         <a 
-          class="delete-button"
-          onClick={(e) => handleDeleteProduct(e)}  
-        ><span>X</span></a>
+          className="delete-button"
+          onClick={(e) => handleDeleteProduct(e)}><span>X</span></a>
       </div>
     </div>
   )

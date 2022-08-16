@@ -31,6 +31,16 @@ const App = () => {
     setProducts(products.filter(product => product._id !== productId))
   }
 
+  const handleEditProduct = async (updateProduct, productId, callback) => {
+    const response = await axios.put(`/api/products/${productId}`, updateProduct)
+    const updatedProduct = response.data
+    setProducts(products.map(product => productId === product._id ? updatedProduct : product))
+
+    if (callback) {
+      callback()
+    }
+  }
+
   return (
     <div id="app">
       <Header />
@@ -38,6 +48,7 @@ const App = () => {
         <ProductListing 
           products={products}
           onDeleteProduct={handleDeleteProduct}
+          onEditProduct={handleEditProduct}
         />
         <AddForm 
           onAddProduct={handleAddProduct}
