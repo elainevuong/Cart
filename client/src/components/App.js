@@ -6,18 +6,7 @@ import ProductListing from "./main/ProductListing";
 import AddForm from "./main/AddForm";
 
 const App = () => {
-  const [ products, setProducts ] = useState([])
   const [ cart, setCart ] = useState([])
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const response = await axios.get('/api/products');
-      const data = response.data;
-      setProducts(data)
-    }
-
-    fetchProducts();
-  }, [])
 
   useEffect(() => {
     const fetchCart = async () => {
@@ -31,35 +20,35 @@ const App = () => {
 
   const handleAddProduct = async (newProduct, callback) => {
     const response = await axios.post('/api/products', newProduct);
-    setProducts(products.concat(response.data));
-    if (callback) {
-      callback()
-    }
+    // setProducts(products.concat(response.data));
+    // if (callback) {
+    //   callback()
+    // }
   }
 
   const handleDeleteProduct = async (productId, callback) => {
     await axios.delete(`/api/products/${productId}`)
-    setProducts(products.filter(product => product._id !== productId))
+    // setProducts(products.filter(product => product._id !== productId))
 
-    if (callback) {
-      callback()
-    }
+    // if (callback) {
+    //   callback()
+    // }
   }
 
   const handleEditProduct = async (updateProduct, productId, callback) => {
     const response = await axios.put(`/api/products/${productId}`, updateProduct)
-    const updatedProduct = response.data
-    setProducts(products.map(product => productId === product._id ? updatedProduct : product))
+    // const updatedProduct = response.data
+    // setProducts(products.map(product => productId === product._id ? updatedProduct : product))
 
-    if (callback) {
-      callback()
-    }
+    // if (callback) {
+    //   callback()
+    // }
   }
 
   const handleAddToCart = async (productId, callback) => {
     const response = await axios.post('/api/add-to-cart', { productId })
     const data = response.data;
-    const updatedProduct = data.product;
+    // const updatedProduct = data.product;
     const updatedItem = data.item
 
     let replaced = false;
@@ -75,7 +64,7 @@ const App = () => {
       setCart([...cart, updatedItem])
     }
 
-    setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product))
+    // setProducts(products.map(product => product._id === updatedProduct._id ? updatedProduct : product))
 
     if (callback) {
       callback()
@@ -99,7 +88,7 @@ const App = () => {
       />
       <main>
         <ProductListing 
-          products={products}
+          // products={products}
           onDeleteProduct={handleDeleteProduct}
           onEditProduct={handleEditProduct}
           onAddToCart={handleAddToCart}
