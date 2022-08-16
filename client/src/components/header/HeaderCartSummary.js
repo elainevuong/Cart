@@ -2,7 +2,7 @@ import axios from "axios"
 import CartItems from "./CartItems"
 import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { cartReceived } from "../../actions/cartActions"
+import { cartReceived, checkoutCart } from "../../actions/cartActions"
 
 const HeaderCartSummary = ({ onHandleCheckout }) => {
   const dispatch = useDispatch();
@@ -19,8 +19,11 @@ const HeaderCartSummary = ({ onHandleCheckout }) => {
   }, [dispatch])
 
 
-  const handleCheckout = () => {
-    onHandleCheckout()
+  const handleCheckout = async () => {
+    if (window.confirm(`Are you sure you want to checkout?`)) {
+      await axios.post('/api/checkout')
+      dispatch(checkoutCart())
+    }
   }
 
   if (cart.length === 0) {

@@ -4,3 +4,10 @@ export const cartReceived = cart => {
     payload: cart
   };
 };
+
+export const checkoutCart = () => {
+  console.log('within checkout cart action')
+  return {
+    type: "CHECKOUT"
+  }
+}

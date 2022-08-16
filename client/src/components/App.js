@@ -32,20 +32,9 @@ const App = () => {
     }
   }
 
-  const handleCheckout = async (callback) => {
-    await axios.post('/api/checkout')
-    // setCart([])
-
-    if (callback) {
-      callback()
-    }
-  }
-
   return (
     <div id="app">
-      <Header 
-        onHandleCheckout={handleCheckout}
-      />
+      <Header />
       <main>
         <ProductListing 
           onAddToCart={handleAddToCart}
