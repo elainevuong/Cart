@@ -1,11 +1,26 @@
+import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { editProduct } from "../../actions/productActions";
+
+// const handleEditProduct = async (updateProduct, productId, callback) => {
+//   await axios.put(`/api/products/${productId}`, updateProduct)
+//   // const updatedProduct = response.data
+//   // setProducts(products.map(product => productId === product._id ? updatedProduct : product))
+
+//   // if (callback) {
+//   //   callback()
+//   // }
+// }
 
 const EditForm = ({ setEditFormVisible, product, onEditProduct }) => {
+  const dispatch = useDispatch();
+
   const [ title, setTitle ] = useState(product.title);
   const [ price, setPrice ] = useState(product.price);
   const [ quantity, setQuantity ] = useState(product.quantity);
 
-  const handleEditProduct = event => {
+  const handleEditProduct = async (event) => {
     event.preventDefault();
 
     const updatedProduct = {
@@ -15,7 +30,11 @@ const EditForm = ({ setEditFormVisible, product, onEditProduct }) => {
     }
 
     const productId = product._id
-    onEditProduct(updatedProduct, productId, clearInputs)
+
+    const response = await axios.put(`/api/products/${productId}`, updatedProduct)
+    const editedProduct = response.data;
+    dispatch(editProduct(editedProduct))
+    clearInputs()
   }
 
   const clearInputs = () => {

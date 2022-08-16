@@ -18,16 +18,6 @@ const App = () => {
     fetchCart();
   }, [])
 
-  const handleEditProduct = async (updateProduct, productId, callback) => {
-    await axios.put(`/api/products/${productId}`, updateProduct)
-    // const updatedProduct = response.data
-    // setProducts(products.map(product => productId === product._id ? updatedProduct : product))
-
-    // if (callback) {
-    //   callback()
-    // }
-  }
-
   const handleAddToCart = async (productId, callback) => {
     const response = await axios.post('/api/add-to-cart', { productId })
     const data = response.data;
@@ -71,7 +61,6 @@ const App = () => {
       />
       <main>
         <ProductListing 
-          onEditProduct={handleEditProduct}
           onAddToCart={handleAddToCart}
         />
         <AddForm />

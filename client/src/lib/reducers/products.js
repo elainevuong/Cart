@@ -8,8 +8,11 @@ const products = (state = [], action) => {
     }
     case 'DELETE_PRODUCT': {
       let productId = action.payload
-      console.log('within the delete product reducer')
       return state.filter(product => product._id !== productId)
+    }
+    case 'EDIT_PRODUCT': {
+      let editedProduct = action.payload
+      return state.map(product => product._id === editedProduct._id ? editedProduct : product)
     }
     default:
       return state;

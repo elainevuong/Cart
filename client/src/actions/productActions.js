@@ -13,9 +13,15 @@ export const addProduct = product => {
 };
 
 export const deleteProduct = productId => {
-  console.log('within the delete product action')
   return {
     type: "DELETE_PRODUCT",
     payload: productId
   };
 };
+
+export const editProduct = editedProduct => {
+  return {
+    type: "EDIT_PRODUCT",
+    payload: editedProduct
+  }
+}
