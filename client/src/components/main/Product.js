@@ -16,7 +16,15 @@ const Product = ({ product }) => {
 
   const handleAddToCart = event => {
     event.preventDefault();
-    dispatch(addToCart(product._id))
+    dispatch(addToCart({
+      productId: product._id,
+      callback: alert,
+    }))
+    
+  }
+
+  const alert = () => {
+    window.alert(`Successfully added ${product.title} to cart!`)
   }
 
   if (editFormVisible) {

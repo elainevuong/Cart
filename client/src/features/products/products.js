@@ -47,8 +47,13 @@ export const editProduct = createAsyncThunk(
 
 export const addToCart = createAsyncThunk(
   'products/addToCart',
-  async (productId) => {
+  async (args) => {
+    const { productId, callback } = args;
     const data = await apiClient.addToCart(productId)
+
+    if (callback) {
+      callback()
+    }
     return data
   }
 )
