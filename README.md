@@ -1,66 +1,30 @@
 # Shopping Cart App
 
-## Setup
+## Background
+The purpose of building this application was to become familiar with React, Redux, and Redux Toolkit. Please see individual branches within the Github repo for the different variations. See the Instructions for detail into how this application was created.
 
-1. Install [Node.js](https://nodejs.org/en/download/package-manager/) if you haven't already
-2. Clone this repository
-3. `cd` into the downloaded directory
-4. `cd` into client and run `npm install` from the command line to install all dependencies
-5. `cd` into server and run `npm install` from the command line to install all dependencies
-
-## DataBase Setup
+## Database Setup and Docker Local Deployment 
+This process will spin up the shopping-cart application locally on your own machine, using Docker. 
 
 1. Create mongoDB account - https://account.mongodb.com/account/register
-2. Create AWS cluster
-3. Go to `collections` and create a new database (shopping_cart) for example with two collections `products` and `cartitems`. Note: If you are going to work in pairs create two databases (for example team1_shopping and team2_shopping) and each database should have two collections `products` and `cartitems`.
-4. Under Security tab, click Database Access, and on the right `add new database user`. After you enter username and password, click `add user` at the bottom right corner.
-5. Under Security tab, click Network Access, and whitelist your IP address.
-6. Once your cluster is created, under Clusters tab, click connect and copy the connection string which will look something like this `mongodb+srv://test123:<password>@cluster0-zamyu.mongodb.net/test?retryWrites=true&w=majority`. Instead of `test123` there will be your username, and you will need to replace `<password>` with your password and `test` with the database name.
-7. Finally, inside your project folder, `cd` into server, create new file `.env` and enter `DB=<paste the string from above here>`. It will look similar to this `DB=mongodb+srv://test123:mypass@cluster0-zamyu.mongodb.net/shopping_cart?retryWrites=true&w=majority`.
+2. Go to `collections` and create a new database (shopping_cart) with two collections `products` and `cartitems`. 
+3. Under Security tab, click Database Access, and on the right `add new database user`. After you enter username and password, click `add user` at the bottom right corner.
+4. Under Security tab, click Network Access, and whitelist your IP address.
+5. Once your cluster is created, under Clusters tab, click connect and copy the connection string which will look something like this `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority`. Replace the username, password, and collection_name with the appropriate names. 
+6. Navigate to the 'docker' branch of this repository located at https://github.com/elainevuong/shopping-cart/tree/docker. Save the 'server.yaml' file into a folder. Edit the 'server.yaml', replacing - `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority` with your mongoDB connection string. 
 
-## Running the app
 
-While in the server directory, run `npm run dev` to start the live server. The live server will watch for changes to files in the `src` directory and reload the page when they're changed.
+## Sample Display
+Here is a sample of what the finished product looks like
 
-## Viewing Static Version of the App
+### **Add Product Display**
+<img src="client/public/AddProduct.png" title="Add Product Display" width="600px">
+<br>
 
-While developing the app, you can take a look at the static pages that you'll eventually convert into a dynamic application. To do so, visit `http://localhost:5001/ui` in the browser. You are also encouraged to read and reuse the markup, classes and ids used in these static files in your components. They're located in the `/server/public/ui` folder.
+### **Edit Product Display**
+<img src="client/public/EditProduct.png" title="Edit Product Display" width="600px">
+<br>
 
-## Developing the app
-
-The starting point of the application is the `/client/src/index.js` file. That's where the root component of the application - `App` - is rendered to the DOM. You can add new components to the `/client/src/components` folder and new test files to the `/client/src/tests` folder.
-
-For the initial application data, you can start with the following list of products:
-
-```js
-[
-  {
-    id: 1,
-    title: "Amazon Kindle E-reader",
-    quantity: 5,
-    price: 79.99,
-  },
-  {
-    id: 2,
-    title: "Apple 10.5-Inch iPad Pro",
-    quantity: 3,
-    price: 649.99,
-  },
-  {
-    id: 3,
-    title: "Yamaha Portable Keyboard",
-    quantity: 2,
-    price: 155.99,
-  },
-  {
-    id: 4,
-    title: "Tinker, Tailor, Soldier, Spy - A John le Carre Novel",
-    quantity: 12,
-    price: 13.74,
-  },
-];
-```
-
-## DOCS
-
-You can find documentation in the `docs` folder in `api.md` file.
+### **Cart Header Display**
+<img src="client/public/CartHeader.png" title="Cart Header Display" width="600px">
+<br>
