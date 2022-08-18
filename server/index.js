@@ -6,6 +6,7 @@ const uiRoutes = require("./routes/ui");
 require("dotenv").config();
 
 const app = express();
+app.use(express.static('build'))
 
 const port = process.env.PORT || 5001;
 
@@ -43,5 +44,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+  console.log(`Server running on Port ${port}`);
 });

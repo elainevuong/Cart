@@ -1,18 +1,30 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { deleteProduct, addToCart } from "../../features/products/products";
 import EditForm from "./EditForm";
 
-const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
+const Product = ({ product }) => {
+  const dispatch = useDispatch();
+
   const [ editFormVisible, setEditFormVisible ] = useState(false)
 
   const handleDeleteProduct = () => {
     if (window.confirm(`Are you sure you want to delete ${product.title}?`)) {
-      onDeleteProduct(product._id)
+      dispatch(deleteProduct(product._id))
     }
   }  
 
   const handleAddToCart = event => {
     event.preventDefault();
-    onAddToCart(product._id)
+    dispatch(addToCart({
+      productId: product._id,
+      callback: alert,
+    }))
+    
+  }
+
+  const alert = () => {
+    window.alert(`Successfully added ${product.title} to cart!`)
   }
 
   if (editFormVisible) {
@@ -38,7 +50,6 @@ const Product = ({ product, onDeleteProduct, onEditProduct, onAddToCart }) => {
         <EditForm 
           setEditFormVisible={setEditFormVisible}
           product={product}
-          onEditProduct={onEditProduct}
         />
       </div>
     )

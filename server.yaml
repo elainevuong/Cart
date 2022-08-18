@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  shopping-cart:
+    image: vuongela/shopping-cart
+    ports:
+      - 3000:3000
+    environment: 
+      - DB=mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<shopping_cart>?retryWrites=true&w=majority
+      - PORT=3000

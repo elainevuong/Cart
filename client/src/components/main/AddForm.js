@@ -1,12 +1,20 @@
 import { useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { addProduct } from '../../features/products/products';
 
-const AddForm = ({ onAddProduct }) => {
+const AddForm = () => {
+  const dispatch = useDispatch()
+
   const [ addFormVisible, setAddFormVisible ] = useState(false)
   
   const [ title, setTitle ] = useState('');
   const [ price, setPrice ] = useState('');
   const [ quantity, setQuantity ] = useState('');
 
+  const handleCancelAddForm = event => {
+    event.preventDefault();
+    setAddFormVisible(false);
+  }
 
   const handleAddProduct = event => {
     event.preventDefault();
@@ -16,7 +24,12 @@ const AddForm = ({ onAddProduct }) => {
       price,
     }
 
-    onAddProduct(newProduct, clearFormInputs)
+    dispatch(addProduct(
+      {
+        product: newProduct,
+        callback: clearFormInputs
+      }
+    ))
   }
 
   const clearFormInputs = () => {
@@ -77,7 +90,7 @@ const AddForm = ({ onAddProduct }) => {
           </button>
           <button
             className="button"
-            onClick={() => setAddFormVisible(false)}
+            onClick={(e) => handleCancelAddForm(e)}
           >
             Cancel
           </button>
