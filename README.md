@@ -1,7 +1,7 @@
 # Shopping Cart App
 
 ## Background
-The purpose of building this application was to become familiar with React, Redux, and Redux Toolkit. Please see individual branches within the Github repo for the different variations. See the Instructions for how detail into how this application was created.
+The purpose of building this application was to become familiar with React, Redux, and Redux Toolkit. Please see individual branches within the Github repo for the different variations. See the Instructions for detail into how this application was created.
 
 ## Database Setup and Docker Local Deployment 
 This process will spin up the shopping-cart application locally on your own machine, using Docker. 
