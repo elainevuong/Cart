@@ -11,7 +11,7 @@ This process will spin up the shopping-cart application locally on your own mach
 3. Under Security tab, click Database Access, and on the right `add new database user`. After you enter username and password, click `add user` at the bottom right corner.
 4. Under Security tab, click Network Access, and whitelist your IP address.
 5. Once your cluster is created, under Clusters tab, click connect and copy the connection string which will look something like this `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority`. Replace the username, password, and collection_name with the appropriate names. 
-6. Navigate to the 'docker' branch of this repository. Save the 'server.yaml' file into a folder. Edit the 'server.yaml', replacing - `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority` with your mongoDB connection string. 
+6. Navigate to the 'docker' branch of this repository located at https://github.com/elainevuong/shopping-cart/tree/docker. Save the 'server.yaml' file into a folder. Edit the 'server.yaml', replacing - `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority` with your mongoDB connection string. 
 
 
 ## Sample Display
