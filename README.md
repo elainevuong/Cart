@@ -12,7 +12,7 @@ This process will spin up the shopping-cart application locally on your own mach
 4. Under Security tab, click Network Access, and whitelist your IP address.
 5. Once your cluster is created, under Clusters tab, click connect and copy the connection string which will look something like this `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority`. Replace the username, password, and collection_name with the appropriate names. 
 6. Save the 'server.yaml' file into a folder, which can be found in the main branch of this repository. Edit the 'server.yaml', replacing - `mongodb+srv://<username>:<password>@cluster0-zamyu.mongodb.net/<collection_name>?retryWrites=true&w=majority` with your mongoDB connection string. 
-7. Run the command `docker-compose -f server.yaml up` and the shopping-cart application will be available for you on Port 3000 of your machine. 
+7. Run the command `docker-compose -f shopping-cart.yaml up` and the shopping-cart application will be available for you on Port 3000 of your machine. 
 
 
 ## Sample Display
